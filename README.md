@@ -1,4 +1,4 @@
-# DouZero-Combat: 将DouZero用于实战斗地主
+# DouZero_for_JJ: 将DouZero用于JJ斗地主
 <img width="500" src="https://gitee.com/daochenzha/DouZero/raw/main/imgs/douzero_logo.jpg" alt="Logo" />
 
 *   本项目基于[DouZero](https://github.com/kwai/DouZero)
