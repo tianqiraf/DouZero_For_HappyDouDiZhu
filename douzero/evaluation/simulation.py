@@ -1,4 +1,3 @@
-import pickle
 from douzero.env.game import GameEnv
 from .deep_agent import DeepAgent
 
@@ -13,21 +12,6 @@ RealCard2EnvCard = {'3': 3, '4': 4, '5': 5, '6': 6, '7': 7,
 AllEnvCard = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7,
               8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12,
               12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 17, 17, 17, 17, 20, 30]
-
-
-def mp_simulate(user_position, card_play_data_list, card_play_model_path_dict):
-    print("创建代表玩家的AI...")
-    players = {}
-    players[user_position] = DeepAgent(user_position, card_play_model_path_dict[user_position])
-
-    env = GameEnv(players)
-    for idx, card_play_data in enumerate(card_play_data_list):
-        env.card_play_init(card_play_data)
-        print("开始出牌\n")
-        while not env.game_over:
-            env.step()
-        print("{}胜，本局结束!\n".format("农民" if env.winner == "farmer" else "地主"))
-        env.reset()
 
 
 def evaluate(landlord, landlord_up, landlord_down):
@@ -72,7 +56,18 @@ def evaluate(landlord, landlord_up, landlord_down):
         'landlord_up': landlord_up,
         'landlord_down': landlord_down}
 
-    mp_simulate(user_position, card_play_data_list, card_play_model_path_dict)
+    print("创建代表玩家的AI...")
+    players = {}
+    players[user_position] = DeepAgent(user_position, card_play_model_path_dict[user_position])
+
+    env = GameEnv(players)
+    for idx, card_play_data in enumerate(card_play_data_list):
+        env.card_play_init(card_play_data)
+        print("开始出牌\n")
+        while not env.game_over:
+            env.step()
+        print("{}胜，本局结束!\n".format("农民" if env.winner == "farmer" else "地主"))
+        env.reset()
 
 
 

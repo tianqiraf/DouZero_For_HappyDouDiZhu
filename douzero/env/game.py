@@ -57,6 +57,7 @@ class GameEnv(object):
 
         self.bomb_num = 0
         self.last_pid = 'landlord'
+        self.winner = ""
 
     def card_play_init(self, card_play_data):
         self.info_sets['landlord'].player_hand_cards = \
@@ -105,10 +106,11 @@ class GameEnv(object):
     def get_bomb_num(self):
         return self.bomb_num
 
-    def step(self):
+    def step(self, position, action=[]):
+        '''
         # 是玩家角色就调用act函数通过智能体获取action，否则通过玩家输入获取action
-        if self.acting_player_position == list(self.players.keys())[0]:
-            action, actions_confidence = self.players[self.acting_player_position].act(self.game_infoset)
+        if self.acting_player_position == self.players[0]:
+            action, actions_confidence = self.players[1].act(self.game_infoset)
             # 计算胜率
             win_rates = {}
             win_rate = max(actions_confidence, -1)
@@ -125,6 +127,14 @@ class GameEnv(object):
             # “要不起”，返回空列表
             except ValueError as e:
                 action = []
+        '''
+        win_rate = 0
+        if self.acting_player_position == position:
+            action, actions_confidence = self.players[1].act(self.game_infoset)
+            # 计算胜率
+            win_rate = max(actions_confidence, -1)
+            win_rate = min(win_rate, 1)
+            win_rate = str(round(float((win_rate + 1) / 2), 4))
 
         if len(action) > 0:
             self.last_pid = self.acting_player_position
@@ -153,6 +163,10 @@ class GameEnv(object):
         if not self.game_over:
             self.get_acting_player_position()
             self.game_infoset = self.get_infoset()
+        # 返回动作和胜率,只有玩家角色会接受返回值
+        action_message = {"action": str(''.join([EnvCard2RealCard[c] for c in action])),
+                          "win_rate": str(round(float(win_rate) * 100, 2)) + "%"}
+        return action_message
 
     def get_last_move(self):
         last_move = []
@@ -191,7 +205,7 @@ class GameEnv(object):
     def update_acting_player_hand_cards(self, action):
         if action != []:
             # 更新玩家手牌，删除对应的牌
-            if self.acting_player_position == list(self.players.keys())[0]:
+            if self.acting_player_position == self.players[0]:
                 for card in action:
                     self.info_sets[self.acting_player_position].player_hand_cards.remove(card)
             # 更新另外两个玩家手牌，删除相同数量的牌
