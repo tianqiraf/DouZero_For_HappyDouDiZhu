@@ -23,6 +23,9 @@
 4. 游戏结束后弹出对话框提示输赢。
 5. 识别错误或无反应可通过**结束**按钮停止本局。至于游戏，就自己手动打完吧。
 
+## 潜在Bug
+*   王炸时出牌特效时间较长，有一定几率导致只能识别出一个王。
+
 ## 鸣谢
 *   本项目基于[DouZero](https://github.com/kwai/DouZero)
 *   借鉴了[cardRecorder](https://github.com/ZDZX-T/cardRecorder)项目的部分代码以及模板图片，用于识别扑克牌
