@@ -126,6 +126,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             item, okPressed = QInputDialog.getItem(self, "选择角色", "未识别到地主，请手动选择角色:", items, 0, False)
             if okPressed and item:
                 self.user_position_code = items.index(item)
+            else:
+                return
         self.user_position = ['landlord_up', 'landlord', 'landlord_down'][self.user_position_code]
         for player in self.Players:
             player.setStyleSheet('background-color: rgba(255, 0, 0, 0);')
@@ -331,7 +333,11 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             return 1
 
     def stop(self):
-        self.env.game_over = True
+        try:
+            self.env.game_over = True
+        except AttributeError as e:
+            pass 
+            
 
 
 if __name__ == '__main__':
@@ -353,9 +359,12 @@ if __name__ == '__main__':
         border-style: outset;
         font : 14px;
     }
+    QPushButton:hover{
+        background-color : light gray;
+    }
     QPushButton:pressed{
         text-align : center;
-        background-color : light gray;
+        background-color : gray;
         font: bold;
         border-color: gray;
         border-width: 2px;
@@ -364,6 +373,8 @@ if __name__ == '__main__':
         height : 14px;
         border-style: outset;
         font : 14px;
+        padding-left:9px;
+        padding-top:9px;
     }
     QComboBox{
         background:transparent;
