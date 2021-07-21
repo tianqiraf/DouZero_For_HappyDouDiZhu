@@ -4,4 +4,6 @@ gitdb2==2.0.6
 PyAutoGUI==0.9.50
 PyQt5==5.13.0
 PyQt5-sip==12.8.1
+Pillow>=5.2.0
+opencv-python
 rlcard
