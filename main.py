@@ -344,6 +344,7 @@ if __name__ == '__main__':
 
     # os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
     # os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+    os.environ["GIT_PYTHON_REFRESH"] = 'quiet'
 
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet("""
