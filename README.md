@@ -1,5 +1,5 @@
 # DouZero_For_Happy_DouDiZhu: 将DouZero用于欢乐斗地主实战
-<img width="500" src="https://gitee.com/daochenzha/DouZero/raw/main/imgs/douzero_logo.jpg" alt="Logo" />
+<img width="500" src="https://raw.githubusercontent.com/kwai/DouZero/main/imgs/douzero_logo.jpg" alt="Logo" />
 
 *   本项目基于[DouZero](https://github.com/kwai/DouZero)
 *   环境配置请移步项目DouZero
