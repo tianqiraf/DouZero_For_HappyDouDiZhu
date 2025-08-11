@@ -7,15 +7,15 @@
 import cv2
 
 # Modify the region parameters and the image path
-capture_pos = [(414, 804, 1041, 59),    # 玩家区域
+capture_pos = [(430,1423 , 2150, 105),    # 玩家区域
                (530, 470, 380, 160),    # 玩家上家区域
                (1010, 470, 380, 160),   # 玩家下家区域
                (1320, 300, 110, 140),   # 地主标志区域(玩家上家)
-               (320, 720, 110, 140),    # 地主标志区域(玩家)
+               (260, 1500, 110, 140),    # 地主标志区域(玩家)
                (500, 300, 110, 140),    # 地主标志区域(玩家下家)
                (817, 36, 287, 136)      # 地主底牌区域
                ]
-img_path = 'C:/Users/Raf/Desktop/screenshot/1.png'
+img_path = 'C:/Users/123/Desktop/1.png'
 
 
 img = cv2.imread(img_path)
